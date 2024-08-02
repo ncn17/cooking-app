@@ -10,13 +10,13 @@ function App() {
         placeholder="Tapez le nom d'un aliment (en anglais)"
       />
       <div className="menus">
-        {meals.map((val) => (
-          <div className="menu-card">
+        {meals.map((value, index) => (
+          <div key={value} className="menu-card">
             <h3>Corba</h3>
             <p>Origin : Turkish</p>
             <img
               src="https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg"
-              alt="meal image"
+              alt={`meal ${index}`}
             />
             <p className="content">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
