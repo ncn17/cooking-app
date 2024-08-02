@@ -1,5 +1,14 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 function App() {
-  const meals = [0, 2, 1, 4, 5];
+  const [meals, setMeals] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
+      .then((res) => setMeals(res.data.meals));
+  }, []);
 
   return (
     <div className="App">
@@ -10,20 +19,12 @@ function App() {
         placeholder="Tapez le nom d'un aliment (en anglais)"
       />
       <div className="menus">
-        {meals.map((value, index) => (
-          <div key={value} className="menu-card">
-            <h3>Corba</h3>
-            <p>Origin : Turkish</p>
-            <img
-              src="https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg"
-              alt={`meal ${index}`}
-            />
-            <p className="content">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Architecto repudiandae quo recusandae? Fuga dolore voluptatem
-              incidunt perspiciatis aliquam expedita reprehenderit alias nemo
-              sed. Velit veritatis laborum quae ullam mollitia nam?
-            </p>
+        {meals.map((meal, index) => (
+          <div key={index} className="menu-card">
+            <h3>{meal.strMeal}</h3>
+            <p>Origin : {meal.strArea}</p>
+            <img src={meal.strMealThumb} alt={`meal ${index}`} />
+            <p className="content truncate-p">{meal.strInstructions}</p>
           </div>
         ))}
       </div>
