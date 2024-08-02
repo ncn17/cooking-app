@@ -1,0 +1,19 @@
+$primaryColor: salmon;
+$color-3: #282c34;
+
+@mixin verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  text-align: center;
+}
