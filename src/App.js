@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [meals, setMeals] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
-      .get(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
+      .get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
       .then((res) => setMeals(res.data.meals));
-  }, []);
+  }, [search]);
 
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
         type="text"
         name="food search"
         placeholder="Tapez le nom d'un aliment (en anglais)"
+        onChange={(e) => setSearch(e.target.value)}
       />
       <div className="menus">
         {meals.map((meal, index) => (
