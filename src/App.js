@@ -21,14 +21,18 @@ function App() {
         onChange={(e) => setSearch(e.target.value)}
       />
       <div className="menus">
-        {meals.map((meal, index) => (
-          <div key={index} className="menu-card">
-            <h3>{meal.strMeal}</h3>
-            <p>Origin : {meal.strArea}</p>
-            <img src={meal.strMealThumb} alt={`meal ${index}`} />
-            <p className="content truncate-p">{meal.strInstructions}</p>
-          </div>
-        ))}
+        {meals !== null && meals.length > 0 ? (
+          meals.map((meal, index) => (
+            <div key={index} className="menu-card">
+              <h3>{meal.strMeal}</h3>
+              <p>Origin : {meal.strArea}</p>
+              <img src={meal.strMealThumb} alt={`meal ${index}`} />
+              <p className="content truncate-p">{meal.strInstructions}</p>
+            </div>
+          ))
+        ) : (
+          <h2>Aucun menu trouver pour cette recette !</h2>
+        )}
       </div>
     </div>
   );
